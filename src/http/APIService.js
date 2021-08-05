@@ -1,6 +1,6 @@
 /* eslint-disable */
 import axios from 'axios';
-const API_URL = 'http://shireen3108.pythonanywhere.com'; /* http://groyce.pythonanywhere.com or http://localhost:8000 */
+const API_URL = 'https://shireen3108.pythonanywhere.com'; /* http://groyce.pythonanywhere.com or http://localhost:8000 */
 // const API_URL = 'http://localhost:8000'; /* http://groyce.pythonanywhere.com or http://localhost:8000 */
 
 export class APIService {

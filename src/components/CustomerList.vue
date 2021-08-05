@@ -55,8 +55,8 @@
                         <td nowrap="true" align="left">{{ props.item.zipcode }}</td>
                         <td nowrap="true" align="left">{{ props.item.email }}</td>
                         <td nowrap="true" align="left">{{ props.item.cell_phone }}</td>
-                        <td align="center" v-if="canModify"><v-icon @click="updateCustomer(props.item)">mdi-pencil</v-icon></td>
-                        <td align="center" v-if="canModify"><v-icon @click="deleteCustomer(props.item)">mdi-delete</v-icon></td>
+                        <td align="center" ><v-icon @click="updateCustomer(props.item)">mdi-pencil</v-icon></td>
+                        <td align="center" ><v-icon @click="deleteCustomer(props.item)">mdi-delete</v-icon></td>
                       </tr>  
                     </template>
               </v-data-table>
@@ -78,8 +78,8 @@
                           <v-col cols="9" class="text-left body-2 text-truncate">{{ item.name }}</v-col>
                           <v-col cols="3" class="text-center">
                             <v-card-actions>
-                              <v-icon @click="updateCustomer(item)" v-if="canModify" class="small">mdi-pencil</v-icon>
-                              <v-icon @click="deleteCustomer(item)" v-if="canModify" class="small">mdi-delete</v-icon>
+                              <v-icon @click="updateCustomer(item)" class="small">mdi-pencil</v-icon>
+                              <v-icon @click="deleteCustomer(item)"  class="small">mdi-delete</v-icon>
                               <v-icon @click.native="expand(item, !isExpanded(item))" class="small">mdi-dots-horizontal</v-icon>
                             </v-card-actions>
                           </v-col>
@@ -109,7 +109,7 @@
                   </v-row>
                 </template>     
               </v-data-iterator>  
-              <v-btn class="blue mt-4 white--text" @click="addNewCustomer">Add Customer</v-btn>  
+              <v-btn class="blue mt-4 white--text" v-if="canModify" @click="addNewCustomer">Add Customer</v-btn>  
         </v-col>  
       </v-row>
     </v-container>  
@@ -170,7 +170,7 @@
         apiService.getAdminsList().then(response => {
           this.admins = response.data.data.map(a=>a.username);
         })
-        setTimeout(() => {  console.log("World!"); }, 2000);
+        
         apiService.getCustomerList().then(response => {
           if (this.admins.includes(localStorage.getItem("log_user").replaceAll("\"",""))){
              this.canModify = true;
